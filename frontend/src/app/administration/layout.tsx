@@ -1,6 +1,5 @@
 "use client"
 import Link from "next/link";
-import { useState } from "react";
 import { MdExitToApp } from "react-icons/md";
 
 interface Menu {
@@ -17,7 +16,8 @@ export default function UserLayout({ children }: { children: React.ReactNode }) 
 
     const menu: Menu[] = [
         { title: 'Productos', link: 'products', },
-        { title: 'Usuarios', link: 'usuarios', },
+        { title: 'Usuarios', link: 'users', },
+        { title: 'Categorias', link: 'categories', },
     ]
 
 
@@ -33,9 +33,9 @@ export default function UserLayout({ children }: { children: React.ReactNode }) 
 
             <section className='min-h-screen hidden lg:flex flex-col text-neutral-700'>
                 <header className='bg-mercado h-[4rem] border-b border-neutral-200 flex items-center   '>
-                    <div className={` px-3 `}>
+                    <Link href="/" className={` px-3 `}>
                         <img src="/img/mercado_liebre_logo.png" alt="logo" className='h-10 mx-auto ' />
-                    </div>
+                    </Link>
                     <section className='flex items-center justify-center grow'>
                         <h2 className="font-semibold ">Administración</h2>
                     </section>

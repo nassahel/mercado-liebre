@@ -2,9 +2,14 @@ import React from 'react'
 import { Product } from '../content/products'
 import { PiHeartStraightThin, PiHeartStraightFill } from "react-icons/pi";
 
-type Props = Product
+interface Props {
+    item: Product
+}
 
-const ItemCard = ({ category, description, image, isFavorite, name, price }: Props) => {
+const ItemCard = ({ item }: Props) => {
+    const { category, description, image, isFavorite, name, price } = item
+
+
     return (
         <div className=' border rounded-md w-[17rem] h-[30rem] group cursor-pointer bg-white shadow-sm hover:shadow-lg duration-200 '>
             <figure className='h-[60%] border-b relative  duration-400 p-2'>
