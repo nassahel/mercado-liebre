@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import toast from 'react-hot-toast';
 
 interface Props {
     setModal: (value: boolean) => void;
@@ -18,7 +19,6 @@ const AddCategoryModal: React.FC<Props> = ({ setModal }) => {
         name: '',
         description: '',
     })
-
 
     const createProduct = async () => {
         const url = `${process.env.NEXT_PUBLIC_API_URL}categories/`
@@ -41,12 +41,14 @@ const AddCategoryModal: React.FC<Props> = ({ setModal }) => {
             if (response.ok) {
                 setFormData({ name: '', description: '', })
                 setModal(false)
+                toast.success(data.message);
                 return data
             } else {
                 console.error('Error:', data);
                 return data
             }
         } catch (error) {
+            toast.error('No se pudo crear categoria')
             return console.error(error);
         }
     }
@@ -59,8 +61,8 @@ const AddCategoryModal: React.FC<Props> = ({ setModal }) => {
 
     return (
         <section className='fixed z-40 top-0 bottom-0 left-0 right-0 flex justify-center items-center'>
-            <div onClick={closeModal} className='fixed z-40 top-0 bottom-0 left-0 right-0 flex justify-center items-center bg-black/50'></div>
-            <article className=' bg-white min-h-4/6 w-11/12  max-w-[30rem] rounded-md relative shadow py-6 px-10 z-50 flex flex-col items-center '>
+            <div onClick={closeModal} className='fixed z-40 top-0 bottom-0 left-0 right-0 flex justify-center items-center bg-black/50 fade-in'></div>
+            <article className=' bg-white min-h-4/6 w-11/12  max-w-[30rem] rounded-md relative shadow py-6 px-10 z-50 flex flex-col items-center scale-up'>
                 <h2 className='mb-6 '>Agregar Categoría</h2>
                 <div className='flex flex-col h-full w-full'>
                     <input value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} maxLength={50} className={inputStyle} type="text" name="nombre" placeholder='Nombre' />

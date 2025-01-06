@@ -1,5 +1,4 @@
 "use client"
-// import { products } from '../content/products'
 import ItemCard from "@/components/ItemCard";
 import Navbar from "@/components/Navbar";
 import { useEffect, useState } from 'react';

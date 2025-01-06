@@ -1,6 +1,6 @@
 "use client"
-import AddEditProductModal from '@/components/AddEditProductModal';
-import { Product } from '@/content/products';
+import AddEditProductModal from '@/components/modals/AddEditProductModal';
+import { Product } from '@/types/types';
 import React, { useEffect, useState } from 'react'
 import { FaEdit } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -55,7 +55,6 @@ const page = () => {
                                     </div>
                                     <div className='flex h-full w-1/4'>
                                         <p className={claseUlt}>Categoría</p>
-                                        {/* <p className={claseUlt}>Oferta</p> */}
                                         <p className={claseUlt}>Precio</p>
                                     </div>
                                     <div className='w-20 flex text-2xl items-center justify-center gap-2'>
@@ -66,9 +65,8 @@ const page = () => {
                             </article>
                             {
                             products.length !== 0 ?    products.map((item: Product, i) => (
-                                    // resultMenus.map((menu, i) => (
                                     <article key={i} className='bg-white flex rounded-sm'>
-                                        <div className='h-28 w-28 overflow-hidden p-2'>
+                                        <div className='h-20 w-20 overflow-hidden p-2'>
                                             <img src={item.image} alt={item.name} className='h-full object-cover' />
                                         </div>
                                         <div className='flex grow justify-evenly items-center'>
@@ -78,10 +76,9 @@ const page = () => {
                                             </div>
                                             <div className='flex h-full w-1/4'>
                                                 <p className={claseUlt}>{item.category}</p>
-                                                {/* <p className={`${claseUlt} ${menu.isOffer === true ? 'bg-green-300' : ''} `}>{menu.isOffer === true ? 'Si' : 'No'}</p> */}
                                                 <p className={claseUlt}>${item.price}</p>
                                             </div>
-                                            <div className='w-20 flex flex-col text-2xl items-center justify-around gap-4'>
+                                            <div className='w-20 flex  text-2xl items-center justify-center px-2 gap-4'>
                                                 <button><FaEdit className='' /></button>
                                                 <button><RiDeleteBin6Line color='red' className='' /></button>
                                             </div>

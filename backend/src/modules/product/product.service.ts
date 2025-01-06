@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { PrismaService } from '../prisma/prisma.service';
@@ -7,8 +7,8 @@ import { PrismaService } from '../prisma/prisma.service';
 export class ProductService {
   constructor(private readonly prisma: PrismaService) { }
 
-  async create(createProductDto: CreateProductDto) { 
-    
+  async create(createProductDto: CreateProductDto) {
+
     const newProduct = await this.prisma.product.create({
       data: createProductDto
     })
@@ -44,6 +44,24 @@ export class ProductService {
 
     }
 
+  }
+
+
+  async findByQuery(category: string) {   
+    
+    try {
+      const foundedProducts = await this.prisma.product.findMany({
+        where: {
+          categoryId: category
+        }
+      })
+      if (foundedProducts.length === 0) throw new NotFoundException('No se encontraron prouctos')
+      return foundedProducts;
+    } catch (error) {
+      console.log(error);
+      throw new InternalServerErrorException('No se pudo realizar la consulta')
+
+    }
   }
 
 

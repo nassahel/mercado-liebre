@@ -1,5 +1,5 @@
+import { Product } from '@/types/types';
 import React from 'react'
-import { Product } from '../content/products'
 import { PiHeartStraightThin, PiHeartStraightFill } from "react-icons/pi";
 
 interface Props {
@@ -7,7 +7,7 @@ interface Props {
 }
 
 const ItemCard = ({ item }: Props) => {
-    const { category, description, image, isFavorite, name, price } = item
+    const { description, image, isFavorite, name, price } = item
 
 
     return (

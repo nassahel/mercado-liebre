@@ -1,21 +1,10 @@
+import { FormData } from '@/types/types';
 import React, { useEffect, useState } from 'react'
 
 interface Props {
     setModal: (value: boolean) => void;
-    // setModalEdit: () => void;
-    // productEdit: boolean;
-    // modalEdit: boolean;
 }
 
-interface FormData {
-    name: string;
-    description: string;
-    image: string;
-    price: string;
-    categoryId: string;
-}
-
-// const AddEditProductModal: React.FC<Props> = ({ setModal, productEdit, modalEdit, setModalEdit }) => {
 const AddEditProductModal: React.FC<Props> = ({ setModal }) => {
     const [categories, setCategories] = useState([])
     const [formData, setFormData] = useState<FormData>({
@@ -78,8 +67,8 @@ const AddEditProductModal: React.FC<Props> = ({ setModal }) => {
 
     return (
         <section className='fixed z-40 top-0 bottom-0 left-0 right-0 flex justify-center items-center'>
-            <div onClick={closeModal} className='fixed z-40 top-0 bottom-0 left-0 right-0 flex justify-center items-center bg-black/50'></div>
-            <article className=' bg-white min-h-4/6 w-11/12 h-[36rem] max-w-[30rem] rounded-md relative shadow py-6 px-10 z-50 flex flex-col items-center '>
+            <div onClick={closeModal} className='fixed z-40 top-0 bottom-0 left-0 right-0 flex justify-center items-center bg-black/50 fade-in'></div>
+            <article className=' bg-white min-h-4/6 w-11/12 h-[36rem] max-w-[30rem] rounded-md relative shadow py-6 px-10 z-50 flex flex-col items-center scale-up '>
                 <h2 className='mb-6 '>Agregar Producto</h2>
                 <div className='flex flex-col h-full w-full'>
                     <input value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} maxLength={50} className={inputStyle} type="text" name="nombre" placeholder='Nombre' />
